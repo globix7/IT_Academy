@@ -1,0 +1,20 @@
+txt = "Some texts have word definitions and explanations to help you. Some of these texts are written in an old style of English"
+
+import re
+def shorten_words(sentence):
+    
+    def shorten_word(word):
+        if len(word) > 3:
+            
+            match = re.search(r'(?<=^.{3})([a-zA-Z])', word)
+            if match:
+                
+                return word[:match.start() + 3] + '.'
+        return word 
+   
+    words = sentence.split()
+    shortened_words = [shorten_word(word) for word in words]
+    
+    return ' '.join(shortened_words)
+result = shorten_words(txt)
+print(result)
